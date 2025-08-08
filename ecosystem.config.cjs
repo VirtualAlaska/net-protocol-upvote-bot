@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   apps: [{
     name: 'net-protocol-upvote-bot',
     script: 'scripts/net-listener.js',
