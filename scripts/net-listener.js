@@ -477,9 +477,8 @@ async function decodeUpvoteFromText(text) {
 
 async function addUpvotesToDispenser(user, amount) {
   try {
-    // Get current gas price and increase it slightly to avoid replacement issues
+    // Use base gas price without any increase for maximum cost efficiency
     const gasPrice = await publicClient.getGasPrice();
-    const adjustedGasPrice = gasPrice * BigInt(120) / BigInt(100); // 20% increase
 
     const { request } = await publicClient.simulateContract({
       address: global.NORMALIZED_DISPENSER_ADDRESS,
@@ -487,7 +486,7 @@ async function addUpvotesToDispenser(user, amount) {
       functionName: 'addUpvotes',
       args: [user, amount],
       account,
-      gasPrice: adjustedGasPrice
+      gasPrice: gasPrice
     });
 
     const hash = await walletClient.writeContract(request);
