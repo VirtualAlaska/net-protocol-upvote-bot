@@ -1,0 +1,40 @@
+{
+  "name": "net-protocol-upvote-bot",
+  "version": "1.0.0",
+  "description": "A Node.js bot that monitors Net Protocol upvotes and automatically awards NFTs when users reach the required upvote threshold",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "setup": "node scripts/setup.js",
+    "listener": "node scripts/net-listener.js",
+    "deploy": "npx hardhat run scripts/deploy.js --network base",
+    "verify": "node scripts/verify.js",
+    "compile": "npx hardhat compile",
+    "check-nfts": "node scripts/checkQueuedNFTs.js",
+    "rescue-all": "node scripts/rescueAllNFTs.js",
+    "rescue-nft": "node scripts/rescueNFT.js",
+    "logs": "pm2 logs net-protocol-upvote-bot",
+    "monitor": "pm2 monit net-protocol-upvote-bot",
+    "stop": "pm2 stop net-protocol-upvote-bot",
+    "restart": "pm2 restart net-protocol-upvote-bot",
+    "status": "pm2 status",
+    "dispenser-logs": "tail -f logs/dispenser-actions.jsonl"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^6.1.0",
+    "@nomicfoundation/hardhat-verify": "^2.1.0",
+    "hardhat": "^2.26.1"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "^5.4.0",
+    "abitype": "^1.0.8",
+    "dotenv": "^17.2.1",
+    "ethers": "^6.15.0",
+    "viem": "^2.33.3",
+    "ws": "^8.18.3"
+  }
+}
